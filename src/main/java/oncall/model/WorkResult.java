@@ -5,18 +5,12 @@ import java.util.Map;
 
 public class WorkResult {
     private final Month month;
-    private final Map<Integer, String> workSchedule;
-
-    public WorkResult(Month month, Map<Integer, String> workSchedule) {
+    private final List<Schedule> schedules;
+    public WorkResult(Month month, List<Schedule> schedules) {
         this.month = month;
-        this.workSchedule = workSchedule;
+        this.schedules = schedules;
     }
 
-    public Month getMonth() {
-        return month;
-    }
-
-    public Map<Integer, String> getWorkSchedule() {
-        return workSchedule;
-    }
+    public Month getMonth() { return month; }
+    public List<Schedule> getSchedules() { return schedules; }
 }

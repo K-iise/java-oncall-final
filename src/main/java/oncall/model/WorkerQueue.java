@@ -2,12 +2,12 @@ package oncall.model;
 
 import java.util.List;
 
-public class WorkQueue {
+public class WorkerQueue {
     private final List<String> workers;
     private int index = 0;
     private String deferredWorker = null;
 
-    public WorkQueue(List<String> workers) {
+    public WorkerQueue(List<String> workers) {
         this.workers = workers;
     }
 

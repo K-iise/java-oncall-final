@@ -42,4 +42,13 @@ public enum Day {
         }
         throw new IllegalArgumentException("[ERROR] 요일 숫자는 0 ~ 6입니다.");
     }
+
+    public Day next() {
+        int nextNumber = (this.number + 1) % 7;
+        return fromNumber(nextNumber);
+    }
+
+    public boolean isWeekend() {
+        return this == SATURDAY || this == SUNDAY;
+    }
 }

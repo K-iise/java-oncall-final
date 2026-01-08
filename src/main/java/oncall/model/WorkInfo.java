@@ -4,17 +4,25 @@ import java.util.List;
 
 public class WorkInfo {
     private Month month;
-    private String startDay;
+    private Day startDay;
 
-    private WorkInfo(Month month, String startDay) {
+    public WorkInfo(Month month, Day startDay) {
         this.month = month;
         this.startDay = startDay;
+    }
+
+    // n일의 요일을 계산해서 반환하는 메서드
+    public Day getDayOfWeek(int date) {
+        // 1일이 시작 요일이므로, (date - 1)만큼 더해주면 해당 날짜의 요일 숫자가 나옵니다.
+        int dayNumber = (startDay.getNumber() + (date - 1)) % 7;
+        return Day.fromNumber(dayNumber);
     }
 
     public static WorkInfo FromList(String[] list) {
         Month monthEnum = Month.from(parseMonth(list[0]));
         validateStartDay(list[1]);
-        return new WorkInfo(monthEnum, list[1]);
+        Day dayEnum = Day.fromDay(list[1]);
+        return new WorkInfo(monthEnum, dayEnum);
     }
 
     private static int parseMonth(String monthPart) {
@@ -36,7 +44,7 @@ public class WorkInfo {
         return month;
     }
 
-    public String getStartDay() {
+    public Day getStartDay() {
         return startDay;
     }
 }

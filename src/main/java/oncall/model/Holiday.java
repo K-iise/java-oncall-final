@@ -25,4 +25,13 @@ public enum Holiday {
     public int getDay() {
         return day;
     }
+
+    public static boolean isHoliday(Month month, int date) {
+        for (Holiday holiday : Holiday.values()) {
+            if (month.getMonth() == holiday.getMonth() && holiday.getDay() == date) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
