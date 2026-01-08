@@ -12,10 +12,10 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         Validator validator = new Validator();
-        Parser parser = new Parser();
+        Parser parser = new Parser(validator);
         WorkService workService = new WorkService();
 
-        Controller controller = new Controller(inputView,outputView,validator,parser, workService);
+        Controller controller = new Controller(inputView,outputView,parser, workService);
         controller.run();
     }
 }

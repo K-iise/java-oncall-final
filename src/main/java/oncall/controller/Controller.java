@@ -13,14 +13,12 @@ import oncall.view.OutputView;
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Validator validator;
     private final Parser parser;
     private final WorkService workService;
 
-    public Controller(InputView inputView, OutputView outputView, Validator validator, Parser parser, WorkService workService) {
+    public Controller(InputView inputView, OutputView outputView, Parser parser, WorkService workService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.validator = validator;
         this.parser = parser;
         this.workService = workService;
     }
@@ -38,8 +36,7 @@ public class Controller {
         while (true) {
             try {
                 String input = inputView.readWorkInfo();
-                validator.validateFormat(input);
-                return WorkInfo.FromList(parser.separateWorkInfo(input));
+                return WorkInfo.FromList(parser.parseToWorkInfo(input));
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

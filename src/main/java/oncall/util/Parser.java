@@ -5,7 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
-    public String[] separateWorkInfo(String input) {
+
+    private final Validator validator;
+
+    public Parser(Validator validator) {
+        this.validator = validator;
+    }
+
+    public String[] parseToWorkInfo(String input) {
+        validator.validateFormat(input);
         return input.split(",");
     }
 
