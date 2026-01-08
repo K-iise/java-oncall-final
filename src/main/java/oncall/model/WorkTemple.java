@@ -39,8 +39,16 @@ public class WorkTemple {
 
     public void validateRange(List<String> crewList) {
         int crewCount = crewList.size();
-        if (!(crewCount > 5 && crewCount < 35)) {
+        if (!(crewCount >= 5 && crewCount <= 35)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
         }
+    }
+
+    public List<String> getWeekdayTemple() {
+        return weekdayTemple;
+    }
+
+    public List<String> getWeekendTemple() {
+        return weekendTemple;
     }
 }

@@ -2,7 +2,9 @@ package oncall.controller;
 
 import java.util.List;
 import oncall.model.WorkInfo;
+import oncall.model.WorkResult;
 import oncall.model.WorkTemple;
+import oncall.service.WorkService;
 import oncall.util.Parser;
 import oncall.util.Validator;
 import oncall.view.InputView;
@@ -13,18 +15,23 @@ public class Controller {
     private final OutputView outputView;
     private final Validator validator;
     private final Parser parser;
+    private final WorkService workService;
 
-    public Controller(InputView inputView, OutputView outputView, Validator validator, Parser parser) {
+    public Controller(InputView inputView, OutputView outputView, Validator validator, Parser parser, WorkService workService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.validator = validator;
         this.parser = parser;
+        this.workService = workService;
     }
 
     public void run(){
         WorkInfo workInfo = loopWorkInfo();
 
         WorkTemple workTemple = loopWorkTemple();
+
+        WorkResult workResult = workService.calculateWork(workInfo, workTemple);
+        outputView.printWorkResult(workResult);
     }
 
     public WorkInfo loopWorkInfo(){

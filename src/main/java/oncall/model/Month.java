@@ -31,4 +31,16 @@ public enum Month {
         return Arrays.stream(Month.values()).filter(m -> m.month == monthValue)
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage()));
     }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
 }
