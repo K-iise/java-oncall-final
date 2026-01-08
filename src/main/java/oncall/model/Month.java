@@ -29,6 +29,6 @@ public enum Month {
 
     public static Month from(int monthValue) {
         return Arrays.stream(Month.values()).filter(m -> m.month == monthValue)
-                .findFirst().orElseThrow(() -> new IllegalArgumentException(ErrorMessage.WORKINFO_ERROR.getMessage()));
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage()));
     }
 }

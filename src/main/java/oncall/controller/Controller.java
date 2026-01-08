@@ -1,6 +1,8 @@
 package oncall.controller;
 
+import java.util.List;
 import oncall.model.WorkInfo;
+import oncall.model.WorkTemple;
 import oncall.util.Parser;
 import oncall.util.Validator;
 import oncall.view.InputView;
@@ -21,6 +23,8 @@ public class Controller {
 
     public void run(){
         WorkInfo workInfo = loopWorkInfo();
+
+        WorkTemple workTemple = loopWorkTemple();
     }
 
     public WorkInfo loopWorkInfo(){
@@ -29,6 +33,20 @@ public class Controller {
                 String input = inputView.readWorkInfo();
                 validator.validateFormat(input);
                 return WorkInfo.FromList(parser.separateWorkInfo(input));
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    public WorkTemple loopWorkTemple(){
+        while (true) {
+            try {
+                String weekdayTemple = inputView.readWeekdayTemple();
+                String weekendTemple = inputView.readWeekendTemple();
+                List<String> weekdayList = parser.parseWokdTempleList(weekdayTemple);
+                List<String> weekendList = parser.parseWokdTempleList(weekendTemple);
+                return new WorkTemple(weekdayList, weekendList);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
