@@ -6,7 +6,7 @@ public class WorkInfo {
     private Month month;
     private String startDay;
 
-    public WorkInfo(Month month, String startDay) {
+    private WorkInfo(Month month, String startDay) {
         this.month = month;
         this.startDay = startDay;
     }

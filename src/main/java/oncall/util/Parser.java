@@ -13,11 +13,12 @@ public class Parser {
     }
 
     public String[] parseToWorkInfo(String input) {
-        validator.validateFormat(input);
+        validator.validateWorkInfoFormat(input);
         return input.split(",");
     }
 
     public List<String> parseWokdTempleList(String input) {
+        validator.validateWorkTempleFormat(input);
         String[] names = input.split(",");
         return new ArrayList<>(Arrays.asList(names));
     }

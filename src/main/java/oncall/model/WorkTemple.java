@@ -16,21 +16,25 @@ public class WorkTemple {
         this.weekendTemple = weekendTemple;
     }
 
-    public void validateAll(List<String> crewList) {
+    public static WorkTemple FromList(List<String> weekdayTemple, List<String> weekendTemple) {
+        return new WorkTemple(weekdayTemple, weekendTemple);
+    }
+
+    private void validateAll(List<String> crewList) {
         validateLength(crewList);
         validateRange(crewList);
         validateDuplication(crewList);
     }
 
-    public void validateLength(List<String> crewList) {
+    private void validateLength(List<String> crewList) {
         for (String name : crewList) {
-            if (name.length() > 5) {
+            if (name == null || name.isBlank() || name.length() > 5) {
                 throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());
             }
         }
     }
 
-    public void validateDuplication(List<String> crewList) {
+    private void validateDuplication(List<String> crewList) {
         Set<String> fake = new HashSet<>(crewList);
         if (crewList.size() != fake.size()){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage());

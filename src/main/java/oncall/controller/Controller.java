@@ -50,7 +50,7 @@ public class Controller {
                 String weekendTemple = inputView.readWeekendTemple();
                 List<String> weekdayList = parser.parseWokdTempleList(weekdayTemple);
                 List<String> weekendList = parser.parseWokdTempleList(weekendTemple);
-                return new WorkTemple(weekdayList, weekendList);
+                return WorkTemple.FromList(weekdayList, weekendList);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
